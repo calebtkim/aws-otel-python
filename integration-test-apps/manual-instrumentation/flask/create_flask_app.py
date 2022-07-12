@@ -16,10 +16,6 @@ from opentelemetry.propagators.aws.aws_xray_propagator import (
     TRACE_ID_VERSION,
 )
 
-if os.environ.get('SAMPLE_APP_LOG_LEVEL') == 'ERROR':
-    log = logging.getLogger('werkzeug')
-    log.setLevel(logging.ERROR)
-
 # NOTE: (NathanielRN) Metrics is on hold.
 # See https://github.com/open-telemetry/opentelemetry-python/issues/1835
 # from setup_metrics import apiBytesSentCounter, apiLatencyRecorder
@@ -112,4 +108,4 @@ def root_endpoint():
 
 def get_flask_app_run_args():
     host, port = os.environ["LISTEN_ADDRESS"].split(":")
-    return {"host": host, "port": int(port), "debug": True}
+    return {"host": host, "port": int(port), "debug": False}
